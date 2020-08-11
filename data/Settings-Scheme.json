@@ -1,0 +1,1095 @@
+{
+    "title": "SETTINGS",
+    "type": "object",
+    "required": [
+        "test",
+        "constituent",
+        "sample",
+        "acquisition"
+    ],
+    "filename": [
+        "test.experimentType",
+        "test.runType",
+        "test.analyte",
+        "test.tags",
+        "constituent",
+        "sample.sampleNumber",
+        "sample.cuvetteID",
+        "sample.batchNumber",
+        "sample.extension",
+        "CURRENTACQUISITION",
+        "TOTALACQUISITIONS",
+        "acquisition.integrationTime",
+        "acquisition.aggregateNumber",
+        "acquisition.acquistionDelay",
+        "acquisition.cameraFilter",
+        "OPERATOR",
+        "DEVICEID",
+        "DATE",
+        "TIME"
+    ],
+    "filenameSeperator": "_",
+    "ui:order": [
+        "test",
+        "constituent",
+        "sample",
+        "acquisition"
+    ],
+    "properties": {
+        "test": {
+            "title": "TEST",
+            "type": "object",
+            "properties": {
+                "experimentType": {
+                    "title": "EXPERIMENT TYPE",
+                    "type": "string",
+                    "enum": [
+                        "Reference Specimen",
+                        "Bacteria",
+                        "Urine",
+                        "Fecal",
+                        "Experiment",
+                        "Virus",
+                        "Antibiotic",
+                        "Calibration",
+                        "No Experiment Type"
+                    ],
+                    "abbreviation": [
+                        "RSP",
+                        "BCT",
+                        "URN",
+                        "FCL",
+                        "EXP",
+                        "VRS",
+                        "ANBC",
+                        "CAL",
+                        "NET"
+                    ],
+                    "default": "No Experiment Type"
+                },
+                "runType": {
+                    "title": "RUN TYPE",
+                    "type": "string",
+                    "enum": [
+                        "Regular",
+                        "Time Trial",
+                        "Overnight",
+                        "No Run Type"
+                    ],
+                    "abbreviation": [
+                        "REG",
+                        "TMT",
+                        "OVN",
+                        "NRT"
+                    ],
+                    "default": "No Run Type"
+                },
+                "analyte": {
+                    "title": "ANALYTE",
+                    "type": "string",
+                    "enum": [
+                        "Water",
+                        "Empty Cuvette",
+                        "Nothing",
+                        "Phosphate buffered saline",
+                        "Urine",
+                        "Fecal",
+                        "Whole Blood",
+                        "Sputum",
+                        "Smear",
+                        "Serum",
+                        "Buffy Coat",
+						"Plasma",
+						"No Analyte"
+                    ],
+                    "abbreviation": [
+                        "H2O",
+                        "ECU",
+                        "NCU",
+                        "PBS",
+                        "BMU",
+                        "BMF",
+                        "WBL",
+                        "SPT",
+                        "SMER",
+                        "SRM",
+                        "BFFC",
+						"PLSM",
+						"ANALYTE"
+                    ],
+                    "default": "No Analyte"
+                },
+                "tags": {
+                    "title": "REFERENCE/TAGS",
+                    "type": "array",
+                    "ui:type": "TagBox",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "Proof of Concept",
+                            "White Blood Cell",
+                            "Natural White Blood Cell",
+                            "Throat Swab",
+                            "Nasal Swab",
+                            "Spiked",
+                            "Natural",
+                            "USR5Min",
+                            "USR20Min",
+                            "10pcturine",
+                            "20pcturine",
+                            "100pcturine",
+                            "FilterUrine",
+                            "Slurry",
+                            "Float"
+                        ],
+                        "abbreviation": [
+                            "POC",
+                            "WBC",
+                            "NWBC",
+                            "THSW",
+                            "NSSW",
+                            "SPIK",
+                            "NTRL",
+                            "USR5",
+                            "USR20",
+                            "10pctU",
+                            "20pctU",
+                            "100pctU",
+                            "FLTU",
+                            "SLUR",
+                            "FLOT"
+                        ]
+                    },
+                    "uniqueItems": true
+                }
+            },
+            "ui:order": [
+                "experimentType",
+                "runType",
+                "analyte",
+                "tags"
+            ]
+        },
+        "constituent": {
+            "title": "CONSTITUENT",
+            "type": "array",
+            "ui:type": "ConstituentItem",
+            "items": {
+                "id": "basic",
+                "type": "object",
+                "ui:order": [
+                    "constituent",
+                    "strain",
+                    "measure1",
+                    "measure2"
+                ],
+                "units": "definitions/units",
+                "constituent": "definitions/constituents",
+                "properties": {
+                    "constituent": {
+                        "title": "Pathogen"
+                    },
+                    "strain": {
+                        "title": "Strain"
+                    },
+                    "measure1": {
+                        "title": "measure1"
+                    },
+                    "measure2": {
+                        "title": "measure2"
+                    }
+                }
+            }
+        },
+        "sample": {
+            "title": "SAMPLE",
+            "type": "object",
+            "properties": {
+                "sampleNumber": {
+                    "title": "SAMPLE NUMBER",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9999,
+                    "postfix": "string:sm"
+                },
+                "cuvetteID": {
+                    "title": "CUVETTE ID",
+                    "type": "string",
+                    "maximum": 16,
+                    "postfix": "string:cid"
+                },
+                "batchNumber": {
+                    "title": "BATCH NUMBER",
+                    "type": "string",
+                    "maximum": 8,
+                    "postfix": "string:bn"
+                },
+                "extension": {
+                    "title": "EXTENSION",
+                    "type": "string",
+                    "maximum": 100
+                },
+                "notes": {
+                    "title": "SAMPLE NOTES",
+                    "type": "string",
+                    "maximum": 300
+                }
+            },
+            "ui:order": [
+                "sampleNumber",
+                "cuvetteID",
+                "batchNumber",
+                "extension",
+                "notes"
+            ]
+        },
+        "acquisition": {
+            "title": "ACQUISITION",
+            "type": "object",
+            "properties": {
+                "numberOfAcquistions": {
+                    "title": "NUMBER OF ACQUISITIONS",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 500,
+                    "default": 50
+                },
+                "integrationTime": {
+                    "title": "INTEGRATION TIME (ms)",
+                    "type": "integer",
+                    "minimum": 5,
+                    "maximum": 15000,
+                    "default": 10000,
+                    "postfix": "string:ms"
+                },
+                "acquistionMode": {
+                    "title": "ACQUISITION MODE",
+                    "type": "string",
+                    "default": "Aggregate",
+                    "enum": [
+                        "Aggregate",
+                        "Average",
+                        "Continuous"
+                    ],
+                    "abbreviation": [
+                        "aggr",
+                        "avg",
+                        "con"
+                    ]
+                },
+                "aggregateNumber": {
+                    "title": "AGGREGATE NUMBER",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 200,
+                    "default": 6,
+                    "postfix": "setting:acquisition.acquistionMode"
+                },
+                "acquistionDelay": {
+                    "title": "ACQUISITION DELAY (ms)",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 15000,
+                    "default": 100,
+                    "postfix": "string:msd"
+                },
+                "cameraFilter": {
+                    "title": "CAMERA FILTER (kHz)",
+                    "type": "string",
+                    "default": "45",
+                    "postfix": "string:khz",
+                    "enum": [
+                        "45",
+                        "500"
+                    ]
+                }
+            },
+            "required": [
+                "numberOfAcquistions",
+                "integrationTime",
+                "acquistionMode",
+                "aggregateNumber",
+                "acquistionDelay",
+                "cameraFilter"
+            ],
+            "ui:order": [
+                "numberOfAcquistions",
+                "integrationTime",
+                "acquistionMode",
+                "aggregateNumber",
+                "acquistionDelay",
+                "cameraFilter"
+            ]
+        }
+    },
+    "definitions": {
+        "units": [
+            "hrs",
+            "mg",
+            "OD",
+            "ugml",
+            "kml",
+            "cfu"
+		],
+		"groupOrder": [
+			"BACTERIA",
+			"CRYSTALS",
+			"PARASITES",
+			"WHITE BLOOD CELLS",
+			"ANTIBIOTICS — Penicillins",
+			"ANTIBIOTICS — Glycopeptides",
+			"ANTIBIOTICS — Lincosamides",
+			"ANTIBIOTICS — Aminoglycosides",
+			"ANTIBIOTICS — Carbapenems",
+			"ANTIBIOTICS — Cephalosporins",
+			"ANTIBIOTICS — Quinolones"
+		],
+        "constituents": {
+            "EFAEC": {
+                "fullName": "Enterococcus Faecalis",
+                "group": "BACTERIA",
+                "strain": [
+                    "2365",
+                    "29212",
+                    "49532"
+                ],
+                "measure1": {
+                    "default": "OD",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "ECOLI": {
+                "fullName": "Escherichia Coli",
+                "group": "BACTERIA",
+                "strain": [
+                    "2340",
+                    "K99",
+                    "O111",
+                    "O127"
+                ],
+                "measure1": {
+                    "default": "OD",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "KPNU": {
+                "fullName": "Klebsiella Pneumoniae",
+                "group": "BACTERIA",
+                "strain": [
+                    "700603",
+                    "1705",
+                    "35657"
+                ],
+                "measure1": {
+                    "default": "OD",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "LEPT": {
+                "fullName": "Leptospira Interrogans",
+                "group": "BACTERIA",
+                "strain": [
+                    "POL010x",
+                    "CAL010x",
+                    "23470",
+                    "23606",
+                    "23478",
+                    "23581"
+                ],
+                "measure1": {
+                    "default": "OD",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "PMRA": {
+                "fullName": "Proteus Mirabilis",
+                "group": "BACTERIA",
+                "strain": [
+                    "49995"
+                ],
+                "measure1": {
+                    "default": "OD",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "MRSA": {
+                "fullName": "Methicillin-Resistant Staphylococcus aureus",
+                "group": "BACTERIA",
+                "strain": [
+                    "43300"
+                ],
+                "measure1": {
+                    "default": "OD",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "MSSA": {
+                "fullName": "Methicillin-Susceptible Staphylococcus aureus",
+                "group": "BACTERIA",
+                "strain": [
+                    "1721"
+                ],
+                "measure1": {
+                    "default": "OD",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "VRSA": {
+                "fullName": "Vancomycinresistant Staphylococcus aureus",
+                "group": "BACTERIA",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "OD",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "NGON": {
+                "fullName": "Neisseria gonorrhoeae",
+                "group": "BACTERIA",
+                "strain": [
+                    "19424",
+                    "700825"
+                ],
+                "measure1": {
+                    "default": "OD",
+                    "minimum": 1,
+                    "maximum": 0
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "PDAR": {
+                "fullName": "Pseudomonas Aeruginosa",
+                "group": "BACTERIA",
+                "strain": [
+                    "2110",
+                    "27853"
+                ],
+                "measure1": {
+                    "default": "OD",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "STRCN": {
+                "fullName": "Streptococcus Canis",
+                "group": "BACTERIA",
+                "strain": [
+                    "43496"
+                ],
+                "measure1": {
+                    "default": "OD",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "SPSUD": {
+                "fullName": "Staphylococcus Pseudintermedius",
+                "group": "BACTERIA",
+                "strain": [
+                    "49051"
+                ],
+                "measure1": {
+                    "default": "OD",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "STRZO": {
+                "fullName": "Streptococcus Equi Zooepidemicus",
+                "group": "BACTERIA",
+                "strain": [
+                    "700400"
+                ],
+                "measure1": {
+                    "default": "OD",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"CLDF": {
+                "fullName": "Clostridium difficile",
+                "group": "BACTERIA",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "OD",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "COMD": {
+                "fullName": "Calcium Oxalate Monohydrate",
+                "group": "CRYSTALS",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "mg",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "CODD": {
+                "fullName": "Calcium Oxalate Dihydrate",
+                "group": "CRYSTALS",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "mg",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "STR": {
+                "fullName": "Struvite",
+                "group": "CRYSTALS",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "mg",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "HOOK": {
+                "fullName": "Ancylostoma Caninum - Hookworm",
+                "group": "PARASITES",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "mg",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "GRDI": {
+                "fullName": "Giardia Lamblia - Giardia",
+                "group": "PARASITES",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "mg",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "RNDW": {
+                "fullName": "Toxocara Canis - Roundworm",
+                "group": "PARASITES",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "mg",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "WHIP": {
+                "fullName": "Trichuris Vulpis - Whipworm",
+                "group": "PARASITES",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "mg",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"CRPTOCY": {
+                "fullName": "Cryptosporidium oocyts",
+                "group": "PARASITES",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "mg",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "NTRP": {
+                "fullName": "Neutrophil",
+                "group": "WHITE BLOOD CELLS",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "minimum": 0,
+                    "maximum": 9999,
+                    "default": "kml"
+                },
+                "measure2": {
+                    "minimum": 0,
+                    "maximum": 9999,
+                    "default": "--"
+                }
+			},
+			"PNCV": {
+                "fullName": "Penicillin V",
+                "group": "ANTIBIOTICS — Penicillins",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"PNCG": {
+                "fullName": "Penicillin G",
+                "group": "ANTIBIOTICS — Penicillins",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"AMXC": {
+                "fullName": "Amoxicillin",
+                "group": "ANTIBIOTICS — Penicillins",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"AMPC": {
+                "fullName": "Ampicillin",
+                "group": "ANTIBIOTICS — Penicillins",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"NAFC": {
+                "fullName": "Nafcillin",
+                "group": "ANTIBIOTICS — Penicillins",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"VANCM": {
+                "fullName": "Vancomycin",
+                "group": "ANTIBIOTICS — Glycopeptides",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"CLNMY": {
+                "fullName": "Clindamycin",
+                "group": "ANTIBIOTICS — Lincosamides",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"GNTMY": {
+                "fullName": "Gentamicin",
+                "group": "ANTIBIOTICS — Aminoglycosides",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"STRTMY": {
+                "fullName": "Streptomycin",
+                "group": "ANTIBIOTICS — Aminoglycosides",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"TBRMY": {
+                "fullName": "Tobramycin",
+                "group": "ANTIBIOTICS — Aminoglycosides",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"CPZN": {
+                "fullName": "Cephazolin",
+                "group": "ANTIBIOTICS — Carbapenems",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"IMPN": {
+                "fullName": "Imipenem",
+                "group": "ANTIBIOTICS — Carbapenems",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"CPLXN": {
+                "fullName": "Cephalexin",
+                "group": "ANTIBIOTICS — Cephalosporins",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            },
+            "CPXTN": {
+                "fullName": "Cefoxitin",
+                "group": "ANTIBIOTICS — Cephalosporins",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"CPTTN": {
+                "fullName": "Cephotetan",
+                "group": "ANTIBIOTICS — Cephalosporins",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"CFRTXN": {
+                "fullName": "Ceftriaxone",
+                "group": "ANTIBIOTICS — Cephalosporins",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"CFPM": {
+                "fullName": "Cefepime",
+                "group": "ANTIBIOTICS — Cephalosporins",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"CFTRLN": {
+                "fullName": "Ceftaroline",
+                "group": "ANTIBIOTICS — Cephalosporins",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"CPRFXN": {
+                "fullName": "Ciprofloxacin",
+                "group": "ANTIBIOTICS — Quinolones",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+			},
+			"LVOFXN": {
+                "fullName": "Levofloxacin",
+                "group": "ANTIBIOTICS — Quinolones",
+                "strain": [
+                    "No Strain"
+                ],
+                "measure1": {
+                    "default": "ugml",
+                    "minimum": 0,
+                    "maximum": 9999
+                },
+                "measure2": {
+                    "default": "--",
+                    "minimum": 0,
+                    "maximum": 9999
+                }
+            }
+        }
+    }
+}

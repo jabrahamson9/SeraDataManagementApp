@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/resources">
+        <file>data/Settings-Scheme.json</file>
+        <file>data/waveforms.db3</file>
+    </qresource>
+</RCC>
